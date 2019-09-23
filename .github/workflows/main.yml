@@ -1,15 +1,15 @@
-on: [push]
+on:
+  pull_request:
+    types: [opened, edited, reopened]
 
 jobs:
-  hello_world_job:
+  pull_request_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A job to validate a pull request
     steps:
-    - name: Hello world action step
-      id: hello
+    - name: Validate pull request step
+      id: pull_request_action
       uses: actions/hello-world-javascript-action@v1
       with:
-        who-to-greet: 'Yuri'
-    # Use the output from the `hello` step
-    - name: Get the output time
-      run: echo "The time was ${{ steps.hello.outputs.time }}"
+        title_regex: '/\[ch\d+\]|\[rp\]|\[hotfix\]/'
+        github_token: "${{ secrets.GITHUB_TOKEN }}"

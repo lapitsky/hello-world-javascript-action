@@ -2,6 +2,10 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 try {
+  const token = core.getInput('GITHUB_TOKEN');
+  const pr = github.context.payload.pull_request;
+  console.log(`The pull request object: ${pr}`);
+  const octokit = new github.GitHub(token);
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
   console.log(`Hello ${nameToGreet}!`);
