@@ -17,6 +17,7 @@ try {
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
 
+  console.log(`The regex is: ${titleRegexStr}`);
   if (!pr.title.match(titleRegex)) {
     core.setFailed("PR must refer to a Clubhouse card, or be a [rp], [hotfix]");
   }
