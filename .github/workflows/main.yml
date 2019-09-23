@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: Validate pull request step
       id: pull_request_action
-      uses: actions/hello-world-javascript-action@v1
+      uses: ./
       with:
         title_regex: '/\[ch\d+\]|\[rp\]|\[hotfix\]/'
         github_token: "${{ secrets.GITHUB_TOKEN }}"
